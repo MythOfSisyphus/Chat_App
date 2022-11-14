@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>luckyChat...</title>
+</head>
+
+<body>
+
+    <div>
+        <h1 id="name"></h1>
+        <h4 id="roomno">Room Number: </h4>
+
+        <hr>    
+
+        <div id="Messanger">
+            <input type="text" name="mesg" id="mesg" placeholder="Your message...">
+            <button id="sendBtn">Send</button>
+        </div>
+
+        <div id="messages"></div>
+    </div>
+
+    <!-- All scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.8.0/qs.min.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script src="/chat.js"></script>
+</body>
+
+</html>
