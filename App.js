@@ -13,37 +13,43 @@ const { Server } = require('socket.io')
 const io = new Server(server)
 
 const path = require('path');
+const { send } = require('process');
 
-const fs = require('fs')
 
 // serving files from 'public' folder
 app.use(express.static('public'))
 
-// Here comes the socket.io's part
-
-// making an json of users to store their username and room number
-// const Users = require('./Database/Users.json');
-
+// Users array to store the data of users like socketId, username & room number
 const Users = [];
 
+// Here comes the socket.io's part
 io.on('connection', (socket) => {
     console.log('New Connection...');
 
-    // taking 'username' and 'room' which are emitted by our 'chat.js' when user filled the form
-    socket.on('NewUser', (data) => {
-        console.log(data.username);
-        console.log(data.room);
+    // getting user's info
+    socket.on('User', (data) => {
+        console.log(data);
 
-        Users.push(data);
+        let Account = {
+            id: socket.id,
+            ...data
+        }
 
-        socket.emit('NewUser', data)
+        Users.push(Account)
+        // console.log(Account);
+
+        socket.join(data.room_number);
+        socket.emit('message', `Welcome ${data.username}!`)
+        socket.broadcast.to(data.room_number).emit('message', `${data.username} has joined chat!` )
     })
 
-    socket.on('sendingMesg', (msg) => {
-        console.log(msg);
+    socket.on('mesg', (data) => {
+        let sender = Users.find(user => user.id == socket.id);
 
-        io.emit('showingMesg', msg)
+        socket.emit('NewMessage', { from: 'You', text: data });
+        socket.broadcast.to(sender.room_number).emit('NewMessage', { from: sender.username, text: data})
     })
+    
 })
 
 server.listen(PORT, () => console.log(`Server running...`))
