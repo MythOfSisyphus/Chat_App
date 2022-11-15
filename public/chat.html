@@ -20,14 +20,26 @@
         .Name {
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
         }
+
+        .danger {
+            border: 2px solid red;
+        }
+        
+        .success {
+            border: 2px solid black;
+        }
     </style>
 </head>
 
 <body>
 
-    <header class="px-3 py-3 bg-black text-white font-semibold space-y-7">
+    <header class="px-3 py-3 sticky top-0 w-full bg-black text-white font-semibold space-y-4">
         <!-- Name of chat app -->
-        <h1 class="text-3xl">Ignite Chat...</h1>
+        <div class="flex items-center justify-between">
+            <h1 class="text-4xl mb-3">Ignite Chat...</h1>
+
+            <p id="typing_status" class="text-sm text-gray-400 -my-4"></p>
+        </div>
 
         <!-- User's name and room number -->
         <div class="flex items-center justify-start space-x-2">
@@ -35,22 +47,24 @@
             <p>|</p>
             <p id="Room_number">Room Number: </p>
         </div>
+
+        <hr class="bg-white text-white h-[1px]">
+
+        <div class="flex space-x-1 bottom-2">
+            <input id="message" class="success text-black w-full rounded-md px-2 py-1" placeholder="Your message">
+            <button id="sendBtn" class=" border border-white px-2 py-1 rounded-md shadow-md shadow-black">Send</button>
+        </div>
     </header>
+
+    
+    <!-- writing mesgs and send button -->
 
     <hr class="bg-red-500 text-red-500 h-[3px]">
 
     <!-- Message container -->
     <section id="Container" class="px-3 py-3 ">
-        <div id="messages" class="space-y-1 overflow-y-auto">
-            <!-- <p><span class="Name font-semibold mr-2">lucky</span> Lorem ipsum dolor sit.</p> -->
-        </div>
+        <div id="messages" class="space-y-1 mb-10 pb-28"></div>
     </section>
-
-    <!-- writing mesgs and send button -->
-    <div class="flex space-x-1 fixed bottom-2">
-        <input id="message" class="border border-black w-80 rounded-md px-2 py-1" placeholder="Your message">
-        <button id="sendBtn" class="bg-black text-white px-2 py-1 rounded-md shadow-md shadow-black">Send</button>
-    </div>
 
 
     <!-- Scripts -->
