@@ -13,7 +13,7 @@ const { Server } = require('socket.io')
 const io = new Server(server)
 
 const path = require('path');
-const { send } = require('process');
+
 
 
 // serving files from 'public' folder
@@ -42,6 +42,17 @@ io.on('connection', (socket) => {
         socket.emit('message', `Welcome ${data.username}!`)
         socket.broadcast.to(data.room_number).emit('message', `${data.username} has joined chat!` )
     })
+
+    socket.on('typing', (data) => {
+        let sender = Users.find(user => user.id == socket.id);
+
+        socket.broadcast.to(sender.room_number).emit('typing', `${sender.username} ${data}`)
+    })
+
+    // socket.on('stoppedTyping', (data) => {
+    //     let sender = Users.find(user => user.id == socket.id);
+    //     socket.broadcast.to(sender.room_number).emit('stoppedTyping', '');
+    // })
 
     socket.on('mesg', (data) => {
         let sender = Users.find(user => user.id == socket.id);

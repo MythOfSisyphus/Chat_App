@@ -43,8 +43,40 @@ socket.on('message', (mesg) => {
 let message = document.querySelector('#message')
 let sendBtn = document.querySelector('#sendBtn')
 
+message.addEventListener('keydown', () => {
+    socket.emit('typing', "is typing...")
+})
+
+socket.on('typing', (data) => {
+    let typing_status = document.querySelector('#typing_status')
+    typing_status.innerHTML = data;
+    setTimeout(() => {
+        typing_status.innerHTML = '';
+    }, 3000)
+})
+
+// message.addEventListener('keyup', () => {
+//     socket.emit('stoppedTyping', '');
+// })
+
+// socket.on('stoppedTyping', (mesg) => {
+//     let typing_status = document.querySelector('#typing_status')
+//     typing_status.innerHTML = mesg;
+// })
+
 sendBtn.addEventListener('click', () => {
-    socket.emit('mesg', message.value)
+    if( message.value == '') {
+        message.placeholder = 'Please write something...'
+        message.classList.remove('success')
+        message.classList.add('danger')
+    }
+    else {
+        socket.emit('mesg', message.value)
+        message.classList.remove('danger')
+        message.classList.add('success')
+        message.placeholder = 'Your message...'
+        message.value = '';
+    }
 })
 
 socket.on('NewMessage', (data) => {
