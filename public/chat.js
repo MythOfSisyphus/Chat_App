@@ -1,35 +1,60 @@
-let socket = io();
+const socket = io();
 
-// getting username and room from 'index.html' after filling the form
-const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true })
+// taking the username & roomno which user filled in register form, using query string
+let url = window.location.search;
+// console.log(url);
 
-// just logging username and room to be confirmed
-console.log(username, room);
+let query_url = new URLSearchParams(url)
 
-socket.emit('NewUser', { username, room })
+// see these 3 lines by uncommenting how we get username and roomno
 
-// getting html elements to show username and room number in chat.html
-let Name = document.querySelector('#name')
-let roomno = document.querySelector('#roomno')
+// console.log(query_url);
+// console.log(query_url.get("username"));
+// console.log(query_url.get("roomno"));
 
-let sendBtn = document.querySelector('#sendBtn')
+// making an user object using these credentials to send the server
+let user = {
+    username: query_url.get("username"),
+    room_number: query_url.get("roomno")
+}
 
-socket.on('NewUser', (data) => {
-    Name.innerHTML = data.username;
-    roomno.innerHTML += data.room;
-})
+// now emmiting these information to server using socket.io to display username and 
+//  room_number on screen
 
-sendBtn.addEventListener('click', () => {
-    let mesg = document.querySelector('#mesg');
-    socket.emit('sendingMesg', mesg.value)
-    mesg.value = '';
-})
+socket.emit('User', user);
 
 let messages = document.querySelector('#messages')
 
-socket.on('showingMesg', (msg) => {
-    let p = document.createElement('p');
-    p.innerHTML = `${username} ${msg}`;
-    messages.appendChild(p)
+let Name = document.querySelector('#Name')
+let Room_number = document.querySelector('#Room_number')
 
+
+Name.innerHTML = user.username
+Room_number.innerHTML += user.room_number
+
+socket.on('message', (mesg) => {
+    let p = document.createElement('p')
+    p.className = 'text-center style'
+    p.textContent = mesg
+
+    messages.appendChild(p)
+})
+
+let message = document.querySelector('#message')
+let sendBtn = document.querySelector('#sendBtn')
+
+sendBtn.addEventListener('click', () => {
+    socket.emit('mesg', message.value)
+})
+
+socket.on('NewMessage', (data) => {
+    let p = document.createElement('p')
+
+    let span = document.createElement('span')
+    span.className = 'Name font-semibold mr-2'
+    span.textContent = data.from
+    p.appendChild(span)
+    p.innerHTML += data.text
+
+    messages.appendChild(p)
 })

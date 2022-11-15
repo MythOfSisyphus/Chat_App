@@ -31,9 +31,9 @@
 
         <!-- User's name and room number -->
         <div class="flex items-center justify-start space-x-2">
-            <h1 class="Name text-xl">lucky</h1>
+            <h1 id="Name" class="Name text-xl"></h1>
             <p>|</p>
-            <p>Room Number: 1</p>
+            <p id="Room_number">Room Number: </p>
         </div>
     </header>
 
@@ -42,17 +42,7 @@
     <!-- Message container -->
     <section id="Container" class="px-3 py-3 ">
         <div id="messages" class="space-y-1 overflow-y-auto">
-            <p class="text-center style">Lorem ipsum dolor sit amet.</p>
-            <p><span class="Name font-semibold mr-2">lucky</span> Lorem ipsum dolor sit.</p>
-            <p><span class="Name font-semibold mr-2">lucky</span> Lorem ipsum dolor sit.</p>
-            <p><span class="Name font-semibold mr-2">lucky</span> Lorem ipsum dolor sit.</p>
-            <p class="text-center style">Lorem ipsum dolor sit amet.</p>
-            <p><span class="Name font-semibold mr-2">lucky</span> Lorem ipsum dolor sit.</p>
-            <p class="text-center style">Lorem ipsum dolor sit amet.</p>
-            <p><span class="Name font-semibold mr-2">lucky</span> Lorem ipsum dolor sit.</p>
-            <p><span class="Name font-semibold mr-2">lucky</span> Lorem ipsum dolor sit.</p>
-            <p class="text-center style">Lorem ipsum dolor sit amet.</p>
-            <p><span class="Name font-semibold mr-2">lucky</span> Lorem ipsum dolor sit.</p>
+            <!-- <p><span class="Name font-semibold mr-2">lucky</span> Lorem ipsum dolor sit.</p> -->
         </div>
     </section>
 
@@ -62,6 +52,12 @@
         <button id="sendBtn" class="bg-black text-white px-2 py-1 rounded-md shadow-md shadow-black">Send</button>
     </div>
 
+
+    <!-- Scripts -->
+    <!-- Socket.io' script which is required for server -->
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script src="/chat.js"></script>
 </body>
 
 </html>
