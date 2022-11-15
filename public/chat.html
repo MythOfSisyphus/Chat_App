@@ -5,37 +5,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>luckyChat...</title>
+    <title>Node Chat</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Permanent+Marker&family=Satisfy&display=swap"
+        rel="stylesheet">
+
+    <style>
+        .style {
+            font-family: 'Permanent Marke', cursive;
+        }
+
+        .Name {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        }
+    </style>
 </head>
 
-<body class="">
+<body>
 
-    <div class="w-[469px] px-3 py-2 space-y-4 bg-black text-white border-4 border-l-0 border-t-0 border-r-0 border-b-white">
-        <h1 class="text-2xl font-semibold">My Chat App</h1>
+    <header class="px-3 py-3 bg-black text-white font-semibold space-y-7">
+        <!-- Name of chat app -->
+        <h1 class="text-3xl">Ignite Chat...</h1>
 
-        <nav class="">
-            <h1 class="text-xl" id="name"></h1>
-            <h4 id="roomno">Room Number: </h4>
-        </nav>
+        <!-- User's name and room number -->
+        <div class="flex items-center justify-start space-x-2">
+            <h1 class="Name text-xl">lucky</h1>
+            <p>|</p>
+            <p>Room Number: 1</p>
+        </div>
+    </header>
 
-    </div>
+    <hr class="bg-red-500 text-red-500 h-[3px]">
 
-    <section id="ChatApp" class="px-2 py-2 fixed bottom-3">
-        <div>
-            <input class="w-[400px] border border-black rounded-md px-2 py-1 " type="text" name="mesg" id="mesg" placeholder="Your message...">
-            <button class="bg-black text-white rounded-md shadow-md shadow-black px-2 py-1" id="sendBtn">Send</button>
+    <!-- Message container -->
+    <section id="Container" class="px-3 py-3 ">
+        <div id="messages" class="space-y-1 overflow-y-auto">
+            <p class="text-center style">Lorem ipsum dolor sit amet.</p>
+            <p><span class="Name font-semibold mr-2">lucky</span> Lorem ipsum dolor sit.</p>
+            <p><span class="Name font-semibold mr-2">lucky</span> Lorem ipsum dolor sit.</p>
+            <p><span class="Name font-semibold mr-2">lucky</span> Lorem ipsum dolor sit.</p>
+            <p class="text-center style">Lorem ipsum dolor sit amet.</p>
+            <p><span class="Name font-semibold mr-2">lucky</span> Lorem ipsum dolor sit.</p>
+            <p class="text-center style">Lorem ipsum dolor sit amet.</p>
+            <p><span class="Name font-semibold mr-2">lucky</span> Lorem ipsum dolor sit.</p>
+            <p><span class="Name font-semibold mr-2">lucky</span> Lorem ipsum dolor sit.</p>
+            <p class="text-center style">Lorem ipsum dolor sit amet.</p>
+            <p><span class="Name font-semibold mr-2">lucky</span> Lorem ipsum dolor sit.</p>
         </div>
     </section>
 
-    <div id="messages" class="px-2 py-2 font-semibold text-red-600"></div>
+    <!-- writing mesgs and send button -->
+    <div class="flex space-x-1 fixed bottom-2">
+        <input id="message" class="border border-black w-80 rounded-md px-2 py-1" placeholder="Your message">
+        <button id="sendBtn" class="bg-black text-white px-2 py-1 rounded-md shadow-md shadow-black">Send</button>
+    </div>
 
-    <!-- All scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.8.0/qs.min.js"></script>
-
-    <script src="/socket.io/socket.io.js"></script>
-
-    <script src="/chat.js"></script>
 </body>
 
 </html>

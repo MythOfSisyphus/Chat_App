@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,21 +8,33 @@
     <title>Register</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="w-80 mx-auto font-semibold my-36 rounded-lg border border-black shadow-md shadow-black px-5 py-10">
-        <form action="/chat.html" class="space-y-3">
-            <div class="flex flex-col">
-                <label for="username">Username</label>
-                <input class="border border-black rounded-md px-2 py-1 " type="text" name="username" id="username" placeholder="Username">
+
+<body class="bg-black">
+    <header class="px-3 py-3 bg-black text-white font-semibold space-y-7">
+        <!-- Name of chat app -->
+        <h1 class="text-3xl">Ignite Chat...</h1>
+
+
+    </header>
+
+    <hr class="bg-red-500 text-red-500 h-[3px]">
+
+    <section class="bg-red-500 text-white font-semibold mx-10 my-24 py-16 px-5 rounded-lg">
+        <!-- Form to register name and room number -->
+        <form action="./chat.html" class="space-y-5">
+            <div class="flex flex-col space-y-1">
+                <label class="text-lg" for="username">Name</label>
+                <input class="bg-red-500 text-white border border-black outline-none px-2 py-1 rounded-md " required type="text" name="username" id="username">
             </div>
 
-            <div class="flex flex-col">
-                <label for="room">Room Number</label>
-                <input class="border border-black rounded-md px-2 py-1 " type="number" name="room" id="room" placeholder="Room Number">
+            <div class="flex flex-col space-y-1">
+                <label  class="text-lg" for="roomno">Room Number</label>
+                <input class="bg-red-500 text-white border border-black outline-none px-2 py-1 rounded-md " required type="number" name="roomno" id="roomno">
             </div>
 
-            <button class="bg-black text-white rounded-md shadow-md shadow-black px-2 py-1" type="submit">Register</button>
+            <button class="bg-white text-red-500 px-2 py-1 rounded-md shadow-md shadow-black">Register</button>
         </form>
-    </div>
+    </section>
 </body>
+
 </html>
