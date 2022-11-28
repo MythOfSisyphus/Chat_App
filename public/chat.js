@@ -84,7 +84,7 @@ socket.on('NewMessage', (data) => {
 
     let span = document.createElement('span')
     span.className = 'Name font-semibold mr-2'
-    span.textContent = data.from
+    span.innerHTML = `${data.from}: `
     p.appendChild(span)
     p.innerHTML += data.text
 
